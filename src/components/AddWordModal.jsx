@@ -8,7 +8,6 @@ export default function AddWordModal({ isOpen, onClose, onSave, initialData, isE
     sentence: ''
   });
 
-  // Sinkronkan form dengan data yang akan diedit atau kata baru
   useEffect(() => {
     if (isOpen) {
       setFormData({
@@ -23,7 +22,6 @@ export default function AddWordModal({ isOpen, onClose, onSave, initialData, isE
     e.preventDefault();
     if (!formData.definition || !formData.sentence) return alert('Please fill all fields');
     
-    // Kirim ID jika sedang dalam mode edit agar Firebase tahu dokumen mana yang diupdate
     onSave(isEditMode ? { ...formData, id: initialData.id } : formData);
     onClose();
   };

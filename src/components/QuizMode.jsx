@@ -8,7 +8,6 @@ export default function QuizMode({ cards, onExit }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
 
-  // --- LOGIKA GENERATOR KUIS ---
   useEffect(() => {
     if (cards.length < 4) {
       alert("Add at least 4 words to start a dynamic quiz!");
@@ -17,15 +16,13 @@ export default function QuizMode({ cards, onExit }) {
     }
 
     const generatedQuestions = cards.map((currentCard, index) => {
-      // Tentukan tipe soal secara acak (0: MC, 1: Guess Word, 2: True/False)
       const type = Math.floor(Math.random() * 3);
       
-      // Ambil 3 kata lain secara acak untuk jadi pilihan jawaban salah
       const others = cards.filter(c => c.id !== currentCard.id)
                           .sort(() => Math.random() - 0.5)
                           .slice(0, 3);
 
-      if (type === 0) { // Multiple Choice: Word -> Definition
+      if (type === 0) {
         const options = [
           { text: currentCard.definition, isCorrect: true },
           ...others.map(o => ({ text: o.definition, isCorrect: false }))
@@ -33,7 +30,7 @@ export default function QuizMode({ cards, onExit }) {
 
         return { type, question: `What is the definition of "${currentCard.word}"?`, options, correctWord: currentCard.word };
       
-      } else if (type === 1) { // Guess the Word: Definition -> Word
+      } else if (type === 1) {
         const options = [
           { text: currentCard.word, isCorrect: true },
           ...others.map(o => ({ text: o.word, isCorrect: false }))
@@ -41,7 +38,7 @@ export default function QuizMode({ cards, onExit }) {
 
         return { type, question: `Which word means: "${currentCard.definition}"?`, options, correctWord: currentCard.word };
       
-      } else { // True or False
+      } else {
         const isActuallyTrue = Math.random() > 0.5;
         const displayDef = isActuallyTrue ? currentCard.definition : others[0].definition;
         
@@ -56,7 +53,7 @@ export default function QuizMode({ cards, onExit }) {
           actualDefinition: currentCard.definition
         };
       }
-    }).sort(() => Math.random() - 0.5); // Acak urutan soal
+    }).sort(() => Math.random() - 0.5);
 
     setQuizData(generatedQuestions);
   }, [cards]);
