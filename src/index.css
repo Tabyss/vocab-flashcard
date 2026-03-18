@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* --- MAPPING WARNA MANUAL (UNTUK V4) --- */
+:root {
+  /* Warna saat LIGHT MODE */
+  --color-bg-app: #f9fafb;     /* gray-50 */
+  --color-bg-card: #ffffff;    /* white */
+  --color-bg-header: #ffffff;  /* white */
+  --color-text-main: #111827;  /* gray-900 */
+  --color-border: #f3f4f6;     /* gray-100 */
+  color-scheme: light;
+}
+
+.dark {
+  /* Warna saat DARK MODE */
+  --color-bg-app: #030712;     /* gray-950 */
+  --color-bg-card: #1f2937;    /* gray-800 */
+  --color-bg-header: #111827;  /* gray-900 */
+  --color-text-main: #f9fafb;  /* gray-50 */
+  --color-border: #1f2937;     /* gray-800 */
+  color-scheme: dark;
+}
+
+/* Terapkan ke elemen dasar */
+@layer base {
+  body {
+    background-color: var(--color-bg-app);
+    color: var(--color-text-main);
+    transition: background-color 0.5s ease, color 0.5s ease;
+  }
+}
+
+/* --- UTILITIES --- */
+@utility backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@utility rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 dark:bg-gray-800 rounded-full;
+  }
+}
