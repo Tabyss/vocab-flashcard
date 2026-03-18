@@ -18,7 +18,6 @@
 }
 
 .dark {
-  /* Warna saat DARK MODE */
   --color-bg-app: #030712;     /* gray-950 */
   --color-bg-card: #1f2937;    /* gray-800 */
   --color-bg-header: #111827;  /* gray-900 */
@@ -27,7 +26,6 @@
   color-scheme: dark;
 }
 
-/* Terapkan ke elemen dasar */
 @layer base {
   body {
     background-color: var(--color-bg-app);

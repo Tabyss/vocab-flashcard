@@ -28,7 +28,6 @@ export default function Flashcard({ card, onEdit }) {
           damping: 25,
         }}
       >
-        {/* Front Side */}
         <div className="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 flex flex-col justify-center items-center p-6 rounded-3xl border border-gray-100 dark:border-gray-700 text-center">
           <button
             onClick={(e) => {
@@ -55,7 +54,6 @@ export default function Flashcard({ card, onEdit }) {
           </button>
         </div>
 
-        {/* Back Side (Definisi & Kalimat) */}
         <div className="absolute inset-0 backface-hidden bg-gray-50 dark:bg-gray-900 rotate-y-180 flex flex-col justify-center p-8 rounded-3xl border border-gray-100 dark:border-gray-700">
           <h2 className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-2">
             Definition
