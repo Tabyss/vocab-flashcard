@@ -15,7 +15,7 @@ export default function Flashcard({ card, onEdit }) {
 
   return (
     <div
-      className="w-full max-w-sm h-64 cursor-pointer perspective-1000 group"
+      className="w-full max-w-sm h-56 cursor-pointer perspective-1000 group"
       onClick={() => setIsFlipped(!isFlipped)}
     >
       <motion.div
@@ -28,7 +28,7 @@ export default function Flashcard({ card, onEdit }) {
           damping: 25,
         }}
       >
-        <div className="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 flex flex-col justify-center items-center p-6 rounded-3xl border border-gray-100 dark:border-gray-700 text-center">
+        <div className="absolute inset-0 backface-hidden bg-white dark:bg-gray-800 flex flex-col justify-center items-center p-6 rounded-3xl  text-center">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -40,7 +40,7 @@ export default function Flashcard({ card, onEdit }) {
             ✏️
           </button>
 
-          <h1 className="text-4xl font-black text-gray-900 dark:text-white mb-4 tracking-tight">
+          <h1 className="text-4xl capitalize font-black text-gray-900 dark:text-white mb-4 tracking-tight">
             {card.word}
           </h1>
           <button
@@ -54,7 +54,7 @@ export default function Flashcard({ card, onEdit }) {
           </button>
         </div>
 
-        <div className="absolute inset-0 backface-hidden bg-gray-50 dark:bg-gray-900 rotate-y-180 flex flex-col justify-center p-8 rounded-3xl border border-gray-100 dark:border-gray-700">
+        <div className="absolute inset-0 backface-hidden bg-gray-50 dark:bg-gray-900 rotate-y-180 flex flex-col justify-center p-6 rounded-3xl">
           <h2 className="text-xs font-bold text-blue-500 uppercase tracking-widest mb-2">
             Definition
           </h2>

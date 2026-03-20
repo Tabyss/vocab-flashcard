@@ -121,29 +121,8 @@ export default function App() {
       </div>
 
       <main className="flex-1 overflow-y-auto custom-scrollbar flex flex-col items-center">
-        <div className="w-full max-w-6xl px-6 pt-10 pb-8 flex flex-col items-center">
-          <div className="w-full max-w-2xl flex justify-between items-end mb-6">
-            <div>
-              <h2 className="text-3xl font-black text-gray-900 dark:text-white tracking-tight">
-                Library
-              </h2>
-              <p className="text-sm text-gray-500 font-bold uppercase tracking-widest">
-                {allCards.length} Words Mastered
-              </p>
-            </div>
-            {allCards.length > 0 && (
-              <button
-                onClick={() => setView("quiz")}
-                className="px-6 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded-2xl shadow-lg shadow-green-500/20 transition-all flex items-center gap-2 active:scale-95"
-              >
-                🚀 Start Quiz
-              </button>
-            )}
-          </div>
-        </div>
-
         <div className="sticky top-0 w-full z-20 flex justify-center px-6 py-4 bg-gray-50/80 dark:bg-gray-950/80 backdrop-blur-md dark:border-gray-800 shadow-sm">
-          <div className="w-full max-w-2xl relative">
+          <div className="w-full max-w-4xl relative">
             <div className="relative">
               <input
                 ref={inputRef}
@@ -151,7 +130,7 @@ export default function App() {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search or add a new word..."
-                className="w-full px-6 py-4 rounded-2xl bg-white dark:bg-gray-900 text-lg dark:text-white font-medium shadow-xl shadow-blue-500/5 border border-gray-100 dark:border-gray-800 focus:ring-4 focus:ring-blue-500/10 focus:outline-none transition-all pr-36"
+                className="w-full px-6 py-4 rounded-2xl bg-white dark:bg-gray-900 text-lg dark:text-white font-medium shadow-xl shadow-blue-500/5 border border-gray-100 dark:border-gray-800 focus:ring-4 focus:ring-blue-500/10 focus:outline-none transition-all "
               />
               <AnimatePresence>
                 {searchTerm.trim() && !isWordExists && (
@@ -188,7 +167,28 @@ export default function App() {
           </div>
         </div>
 
-        <div className="w-full max-w-6xl px-6 pt-12 pb-20">
+        <div className="w-full  px-6 pt-10 pb-8 flex flex-col items-center">
+          <div className="w-full flex justify-between items-end">
+            <div>
+              <h2 className="text-3xl font-black text-gray-900 dark:text-white tracking-tight">
+                Library
+              </h2>
+              <p className="text-sm text-gray-500 font-bold uppercase tracking-widest">
+                {allCards.length} Words Mastered
+              </p>
+            </div>
+            {allCards.length > 0 && (
+              <button
+                onClick={() => setView("quiz")}
+                className="px-6 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded-2xl shadow-lg shadow-green-500/20 transition-all flex items-center gap-2 active:scale-95"
+              >
+                🚀 Start Quiz
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="w-full px-6 pt-12 pb-20">
           <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-8 w-full justify-items-center">
             <AnimatePresence mode="popLayout">
               {filteredCards.map((card) => (
