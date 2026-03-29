@@ -68,12 +68,16 @@ export default function QuizMode({ cards, onExit }) {
             ],
           };
         } else {
-          const regex = new RegExp(currentCard.word, "gi");
+          const regex = new RegExp(`\\b${currentCard.word}[a-z]*\\b`, "gi");
+
           return {
             ...baseData,
             type,
             question: "Complete the sentence:",
-            sentenceContext: currentCard.sentence.replace(regex, "__________"),
+            sentenceContext: (currentCard.sentence || "").replace(
+              regex,
+              "__________",
+            ),
             options: [
               { text: currentCard.word, isCorrect: true },
               ...others.map((o) => ({ text: o.word, isCorrect: false })),

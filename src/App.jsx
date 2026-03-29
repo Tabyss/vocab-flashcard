@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Import Firebase config
 import { db } from "./firebase";
 import {
   collection,
@@ -18,13 +17,14 @@ import Navbar from "./components/Navbar";
 import Flashcard from "./components/Flashcard";
 import AddWordModal from "./components/AddWordModal";
 import QuizMode from "./components/QuizMode";
+import VoiceQuizMode from "./components/VoiceQuizMode";
 
 export default function App() {
   const [allCards, setAllCards] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isDark, setIsDark] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingCard, setEditingCard] = useState(null); 
+  const [editingCard, setEditingCard] = useState(null);
   const [view, setView] = useState("library");
   const inputRef = useRef(null);
 
@@ -115,6 +115,18 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+      <AnimatePresence>
+        {view === "voice-quiz" && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50"
+          >
+            <VoiceQuizMode cards={allCards} onExit={() => setView("library")} />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="flex-none z-30">
         <Navbar isDark={isDark} setIsDark={setIsDark} />
@@ -168,7 +180,7 @@ export default function App() {
         </div>
 
         <div className="w-full  px-6 pt-10 pb-8 flex flex-col items-center">
-          <div className="w-full flex justify-between items-end">
+          <div className="w-full flex justify-between items-center">
             <div>
               <h2 className="text-3xl font-black text-gray-900 dark:text-white tracking-tight">
                 Library
@@ -178,12 +190,20 @@ export default function App() {
               </p>
             </div>
             {allCards.length > 0 && (
-              <button
-                onClick={() => setView("quiz")}
-                className="px-6 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded-2xl shadow-lg shadow-green-500/20 transition-all flex items-center gap-2 active:scale-95"
-              >
-                🚀 Start Quiz
-              </button>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <button
+                  onClick={() => setView("voice-quiz")}
+                  className="px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white font-bold rounded-2xl shadow-lg flex items-center gap-2 active:scale-95"
+                >
+                  🎙️ Voice Quiz
+                </button>
+                <button
+                  onClick={() => setView("quiz")}
+                  className="px-6 py-3 bg-green-500 hover:bg-green-400 text-white font-bold rounded-2xl shadow-lg shadow-green-500/20 transition-all flex items-center gap-2 active:scale-95"
+                >
+                  🚀 Start Quiz
+                </button>
+              </div>
             )}
           </div>
         </div>
