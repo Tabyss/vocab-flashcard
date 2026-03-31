@@ -146,7 +146,6 @@ export default function AddWordModal({ isOpen, onClose, onSave, initialData }) {
               )}
             </AnimatePresence>
 
-            {/* STEP 3: DEFINISI & CONTOH (Hanya terbuka setelah validasi 5x) */}
             <div className={`space-y-4 transition-all duration-500 ${isLocked ? "opacity-20 pointer-events-none blur-sm grayscale" : "opacity-100 blur-0"}`}>
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase text-gray-400 ml-1 tracking-widest">Step 2: Meaning</label>

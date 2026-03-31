@@ -16,7 +16,7 @@ import {
 import Navbar from "./components/Navbar";
 import Flashcard from "./components/Flashcard";
 import AddWordModal from "./components/AddWordModal";
-import QuizMode from "./components/QuizMode";
+import QuizMode from "./components/QuizMode/QuizMode";
 import VoiceQuizMode from "./components/VoiceQuizMode";
 
 export default function App() {
